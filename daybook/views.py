@@ -11,11 +11,11 @@ from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, ListAPIV
 
 
 @api_view(['GET']) 
-#@login_required(login_url='/api/login')  needed to redirect user to login page whe unauthorized
+#@login_required(login_url='/api/login')  
 @permission_classes([IsAuthenticated])
 def daybook(request):
-    incobj = Income.objects.all()
-    expobj = Expense.objects.all()
+    incobj = Income.objects.filter(owner=request.user)
+    expobj = Expense.objects.filter(owner=request.user)
     inserobj = incomeserializer(incobj, many=True)
     expserobj = expenseserializer(expobj, many=True)
     Resultmodel = inserobj.data+expserobj.data
