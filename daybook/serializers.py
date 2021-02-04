@@ -5,11 +5,11 @@ from income.models import Income
 class expenseserializer(serializers.ModelSerializer):
     class Meta:
         model = Expense
-        fields=['id', 'amount', 'main_category', 'sub_category', 'description', 'mode_of_payment', 'date']
+        fields=['id', 'amount', 'main_category', 'sub_category', 'description', 'mode_of_payment', 'date', 'time']
 
 
 class incomeserializer(serializers.ModelSerializer):
     class Meta:
         model = Income
-        fields = ['id', 'amount', 'source_of_income', 'description', 'received_source', 'date']
+        fields = ['id', 'amount', 'source_of_income', 'description', 'received_source', 'date', 'time']
     
