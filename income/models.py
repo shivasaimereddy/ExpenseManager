@@ -7,10 +7,9 @@ class Income(models.Model):
     amount = models.FloatField()
     source_of_income = models.CharField(max_length=266)
     description = models.TextField()
-  #  received_source = models.CharField(max_length=266)
-    received_source = models.CharField(choices=(('select', 'select'), ('Bank Transfer', 'Bank Transfer'), 
-                                            ('Cash', 'Cash'), ('Cheque', 'Cheque')), default='select', max_length=20)
-    date = models.DateTimeField(default=now)
+    received_source = models.CharField(max_length=266)
+    date = models.DateField(default=now)
+    time = models.TimeField(default=now)
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
 
 
@@ -21,8 +20,4 @@ class Income(models.Model):
         ordering: ['-date']
 
 
-class Source(models.Model):
-    name = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.name
