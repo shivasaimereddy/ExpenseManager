@@ -9,20 +9,13 @@ class Expense(models.Model):
     sub_category = models.CharField(max_length=266)
     description = models.TextField()
     mode_of_payment = models.CharField(max_length=266)
-    date = models.DateTimeField(default=now)
+    date = models.DateField(default=now)
+    time = models.TimeField(default=now)
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.mode_of_payment
+        return self.main_category
 
     class Meta:
          ordering: ['-date']
 
-class Mode(models.Model):
-    name = models.CharField(max_length=255)
-
-    class Meta:
-        verbose_name_plural = 'Modes'
-
-    def __str__(self):
-        return self.name
