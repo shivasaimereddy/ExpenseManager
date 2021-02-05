@@ -21,6 +21,8 @@ from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, ListAPIV
 
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
+from django.contrib.auth.decorators import login_required 
+
 
 
 
