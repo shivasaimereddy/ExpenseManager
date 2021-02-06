@@ -28,7 +28,7 @@ class daybook(ListAPIView):
         exp_sum = expenses.aggregate(Sum('amount'))['amount__sum']
         balance = inc_sum - exp_sum
         Resultmodel = inc.data+exp.data
-        Daybook = ({'Total Income': inc_sum if inc_sum else 0 ,
+        Dayboo = ({'Total Income': inc_sum if inc_sum else 0 ,
                     'Total Expenses': exp_sum if exp_sum else 0, 
                     'Balance' : balance if balance else 0,
                     'Daybook': Resultmodel})
