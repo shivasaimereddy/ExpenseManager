@@ -86,7 +86,8 @@ class ChangePasswordView(generics.UpdateAPIView):
     
     
 @api_view(['GET'])
-@login_required(login_url='/api/login')
+@permission_classes([IsAuthenticated])
+#@login_required(login_url='/api/login')
 def profile(request):
     data = User.objects.filter(username = request.user)
     userser = ProfileSerializer(data, many=True)
