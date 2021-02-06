@@ -1,8 +1,6 @@
 # expensemanager
 Expense Manager Django RestFramework APIs
 
-# expensemanager
-Expense Manager API
 
 create virtual environment :
   pip install virtualenv,
