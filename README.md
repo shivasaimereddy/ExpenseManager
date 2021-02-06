@@ -6,7 +6,7 @@ Expense Manager API
 
 create virtual environment :
   pip install virtualenv,
-  virtualenv -p python3 venv,
+  virtualenv venv,
   venv\Scripts\activate
   
 pip install django
