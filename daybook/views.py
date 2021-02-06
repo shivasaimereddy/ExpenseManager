@@ -7,18 +7,36 @@ from expenses.models import Expense
 from income.models import Income
 from rest_framework import permissions
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, ListAPIView
-    
+
+from django.db.models import Sum
 
 
-@api_view(['GET']) 
-#@login_required(login_url='/api/login')  
-@permission_classes([IsAuthenticated])
-def daybook(request):
-    incobj = Income.objects.filter(owner=request.user)
-    expobj = Expense.objects.filter(owner=request.user)
-    inserobj = incomeserializer(incobj, many=True)
-    expserobj = expenseserializer(expobj, many=True)
-    Resultmodel = inserobj.data+expserobj.data
-    return Response(Resultmodel)
-   
+
+class daybook(ListAPIView):
+
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+    def get(self, request):
+        income = Income.objects.filter(owner=request.user)
+        expenses = Expense.objects.filter(owner=request.user)
+        inc = incomeserializer(income, many=True)
+        exp = expenseserializer(expenses, many=True)
+        inc_sum = income.aggregate(Sum('amount'))['amount__sum']
+        exp_sum = expenses.aggregate(Sum('amount'))['amount__sum']
+        balance = inc_sum - exp_sum
+        Resultmodel = inc.data+exp.data
+        Daybook = ({'Total Income': inc_sum if inc_sum else 0 ,
+                    'Total Expenses': exp_sum if exp_sum else 0, 
+                    'Balance' : balance if balance else 0,
+                    'Daybook': Resultmodel})
+        return Response(Daybook)
+
+    def get_queryset(self):
+        return Daybook.objects.filter(owner=self.request.user)
+
+
+
 
