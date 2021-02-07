@@ -38,3 +38,23 @@ class ExpenseDetailView(RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Expense.objects.filter(owner=self.request.user)
+    
+   
+class TotalExpenses(ListAPIView):
+
+    serializer_class = ExpenseSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+    def get(self, request):
+        expenses = Expense.objects.filter(owner=request.user)
+        serializer = ExpenseSerializer(expenses, many=True)
+        total_expenses = expenses.aggregate(Sum('amount'))['amount__sum']
+        ExpenseTable = ({'Total Expenses': total_expenses if total_expenses else 0})
+        return Response(ExpenseTable)
+
+    def get_queryset(self):
+        return Expense.objects.filter(owner=self.request.user)
+
+    
+    
