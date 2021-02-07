@@ -37,6 +37,24 @@ class IncomeDetailView(RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Income.objects.filter(owner=self.request.user)
+    
+    
+    
+class TotalIncome(ListAPIView):
+
+    serializer_class = IncomeSerializer
+    permission_classes = (permissions.IsAuthenticated,)  
+
+    def get(self, request):
+        income = Income.objects.filter(owner=request.user)
+        serializer = IncomeSerializer(income, many=True)
+        total_income = income.aggregate(Sum('amount'))['amount__sum']
+        IncomeTable = ({'Total Income': total_income if total_income else 0})
+        return Response(IncomeTable)
+
+    def get_queryset(self):
+        return Income.objects.filter(owner=self.request.user)
+         
 
 
 
