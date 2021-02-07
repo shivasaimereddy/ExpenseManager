@@ -1,7 +1,8 @@
 # expensemanager
 Expense Manager Django RestFramework APIs
 
-     
+Requirements:
+
     pip install virtualenv
     virtualenv venv
     venv\Scripts\activate
