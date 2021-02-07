@@ -41,6 +41,7 @@ class ExpenseDetailView(RetrieveUpdateDestroyAPIView):
         return Expense.objects.filter(owner=self.request.user)
 
 
+
 class TotalExpenses(ListAPIView):
 
     serializer_class = ExpenseSerializer
