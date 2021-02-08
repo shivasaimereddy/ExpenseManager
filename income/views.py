@@ -38,8 +38,7 @@ class IncomeDetailView(RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Income.objects.filter(owner=self.request.user)
     
-    
-    
+        
 class TotalIncome(ListAPIView):
 
     serializer_class = IncomeSerializer
