@@ -9,15 +9,13 @@ from rest_framework import permissions
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, ListAPIView
 
 from django.db.models import Sum
+from .models import Budget
 
 
 
 class daybook(ListAPIView):
 
     permission_classes = (permissions.IsAuthenticated,)
-
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
 
     def get(self, request):
         income = Income.objects.filter(owner=request.user)
@@ -32,10 +30,14 @@ class daybook(ListAPIView):
                     'Total Expenses': exp_sum if exp_sum else 0, 
                     'Balance' : balance if balance else 0,
                     'Daybook': Resultmodel})
+        budgeting = Budget.objects.create(Total_Income = inc_sum, Total_Expenses = exp_sum, Balance = balance)
+        budgeting.save()
         return Response(Daybook)
 
     def get_queryset(self):
         return Daybook.objects.filter(owner=self.request.user)
+
+
 
 
 
