@@ -54,6 +54,8 @@ class TotalIncome(ListAPIView):
 
     def get_queryset(self):
         return Income.objects.filter(owner=self.request.user)
+
+
          
 
 
