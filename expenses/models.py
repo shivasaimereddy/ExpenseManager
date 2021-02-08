@@ -34,7 +34,7 @@ class Expense(models.Model):
 
 
     def __str__(self):
-        return self.main_category
+        return self.description
 
     class Meta:
          ordering: ['-date']
