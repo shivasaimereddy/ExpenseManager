@@ -29,6 +29,7 @@ Urls:
     http://127.0.0.1:8000/api/logout/
     http://127.0.0.1:8000/api/change-password/
     http://127.0.0.1:8000/api/password_reset/
+    http://127.0.0.1:8000/api/profile/
     http://127.0.0.1:8000/api/expenses/
     http://127.0.0.1:8000/api/income/
     http://127.0.0.1:8000/api/expenses/total/
