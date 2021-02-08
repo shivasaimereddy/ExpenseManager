@@ -29,7 +29,7 @@ class Income(models.Model):
 
 
     def __str__(self):
-        return self.source_of_income
+        return self.description
 
     class Meta:
         ordering: ['-date']
