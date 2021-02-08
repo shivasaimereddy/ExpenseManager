@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
-from .models import Expense
-from .serializers import ExpenseSerializer
+from .models import Expense, MainCategory, SubCategory
+from .serializers import ExpenseSerializer, MainCategorySerializer, SubCategorySerializer
 from rest_framework import permissions
 from accounts.views import LoginAPI
 from knox.models import AuthToken
@@ -9,6 +9,8 @@ from rest_framework.authentication import TokenAuthentication
 from django.db.models import Sum
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from django.shortcuts import render
 
 
 class ExpenseList(ListCreateAPIView):
@@ -57,3 +59,5 @@ class TotalExpenses(ListAPIView):
 
     def get_queryset(self):
         return Expense.objects.filter(owner=self.request.user)
+
+
