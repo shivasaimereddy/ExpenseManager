@@ -24,10 +24,13 @@ class ModeOfPayment(models.Model):
 
 class Expense(models.Model):
     amount = models.FloatField()
-    main_category = models.ForeignKey(MainCategory, on_delete=models.SET_NULL, null=True)
-    sub_category = models.ForeignKey(SubCategory, on_delete=models.SET_NULL, null=True)
+#   main_category = models.ForeignKey(MainCategory, on_delete=models.SET_NULL, null=True)
+#   sub_category = models.ForeignKey(SubCategory, on_delete=models.SET_NULL, null=True)
+    main_category = models.CharField(max_length=226)
+    sub_category = models.CharField(max_length=226)
     description = models.TextField()
-    mode_of_payment = models.ForeignKey(ModeOfPayment, on_delete=models.SET_NULL, null=True)
+#   mode_of_payment = models.ForeignKey(ModeOfPayment, on_delete=models.SET_NULL, null=True)
+    mode_of_payment = models.CharField(max_length=226)
     date = models.DateField(default=now)
     time = models.TimeField(default=now)
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
