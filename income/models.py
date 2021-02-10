@@ -20,9 +20,11 @@ class ReceivedSource(models.Model):
 
 class Income(models.Model):
     amount = models.FloatField()
-    source_of_income = models.ForeignKey(SourceOfIncome, on_delete=models.SET_NULL, null=True)
+#   source_of_income = models.ForeignKey(SourceOfIncome, on_delete=models.SET_NULL, null=True)
+    source_of_income = models.CharField(max_length=226)
     description = models.TextField()
-    received_source = models.ForeignKey(ReceivedSource, on_delete=models.SET_NULL, null=True)
+#   received_source = models.ForeignKey(ReceivedSource, on_delete=models.SET_NULL, null=True)
+    received_source = models.CharField(max_length=226)
     date = models.DateField(default=now)
     time = models.TimeField(default=now)
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
