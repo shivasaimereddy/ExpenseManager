@@ -15,7 +15,7 @@ class ReceivedSourceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Income, IncomeAdmin)
-admin.site.register(SourceOfIncome, SourceAdmin)
-admin.site.register(ReceivedSource, ReceivedSourceAdmin)
+#admin.site.register(SourceOfIncome, SourceAdmin)
+#admin.site.register(ReceivedSource, ReceivedSourceAdmin)
 
 
