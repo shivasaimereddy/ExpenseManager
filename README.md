@@ -35,6 +35,7 @@ Urls:
     http://127.0.0.1:8000/api/expenses/total/
     http://127.0.0.1:8000/api/income/total/
     http://127.0.0.1:8000/api/daybook/
+    http://127.0.0.1:8000/api/users/
   
   
   
