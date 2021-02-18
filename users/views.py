@@ -11,6 +11,9 @@ from rest_framework import authentication, permissions
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, ListAPIView
 
 from .serializers import UserSerializer
+from rest_framework import viewsets
+from rest_framework import mixins
+
 
 # Create your views here.
 """
@@ -35,5 +38,12 @@ class users(ListAPIView):
 
     def get_queryset(self):
         return User.objects.filter(username = self.request.user)
+
+
+class UserListViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.IsAdminUser,)
+
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
