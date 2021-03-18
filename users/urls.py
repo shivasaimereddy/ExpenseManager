@@ -9,4 +9,3 @@ router.register('', viewset = views.UserListViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-]
