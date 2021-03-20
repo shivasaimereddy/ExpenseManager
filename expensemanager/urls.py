@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import home
+
 #from .router import router
 
 
@@ -24,7 +26,13 @@ urlpatterns = [
     path('api/expenses/', include('expenses.urls')),
     path('api/income/', include('income.urls')),
     path('api/daybook/', include('daybook.urls')),
+    path('api/users/', include('users.urls')),
+    path('', home, name= 'home'),
 
 ]
+
+admin.site.index_title = 'Site Admin'               
+admin.site.site_title = 'Expense Manager'
+
 
 
