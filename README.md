@@ -1,7 +1,7 @@
 # expensemanager
 Expense Manager Django RestFramework APIs
 
-This project have been deployed to Heroku
+This project have been deployed using Heroku
 
 https://expense-manager-drf.herokuapp.com/
 
